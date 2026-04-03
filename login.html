@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background: linear-gradient(135deg, #ff6a00, #ffb347);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* LOGIN BOX */
+.login-box{
+background:#fff;
+padding:40px;
+border-radius:12px;
+width:300px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+animation:fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.login-box h2{
+margin-bottom:20px;
+color:#333;
+}
+
+/* INPUT */
+.input-group{
+margin-bottom:15px;
+position:relative;
+}
+
+.input-group input{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+outline:none;
+font-size:14px;
+}
+
+.input-group input:focus{
+border-color:#ff6a00;
+}
+
+/* SHOW PASSWORD */
+.show-pass{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:14px;
+color:#666;
+}
+
+/* BUTTON */
+button{
+width:100%;
+padding:10px;
+background:#ff6a00;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#e65c00;
+}
+
+button:disabled{
+background:#ccc;
+cursor:not-allowed;
+}
+
+/* ERROR */
+.error{
+color:red;
+font-size:14px;
+margin-top:10px;
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>Admin Login</h2>
+
+<div class="input-group">
+<input type="text" id="username" placeholder="Enter Username">
+</div>
+
+<div class="input-group">
+<input type="password" id="password" placeholder="Enter Password">
+<span class="show-pass" onclick="togglePassword()">👁️</span>
+</div>
+
+<button id="loginBtn" onclick="login()">Login</button>
+
+<div class="error" id="errorMsg"></div>
+
+</div>
+
+<script>
+// ============================
+// SHOW / HIDE PASSWORD
+// ============================
+
+function togglePassword(){
+let passField = document.getElementById("password");
+
+if(passField.type === "password"){
+passField.type = "text";
+}else{
+passField.type = "password";
+}
+}
+
+
+// ============================
+// LOGIN FUNCTION
+// ============================
+
+function login(){
+
+let user = document.getElementById("username").value.trim();
+let pass = document.getElementById("password").value.trim();
+let errorBox = document.getElementById("errorMsg");
+let btn = document.getElementById("loginBtn");
+
+// reset error
+errorBox.style.display = "none";
+
+// validation
+if(user === "" || pass === ""){
+errorBox.innerText = "Please fill all fields ⚠️";
+errorBox.style.display = "block";
+return;
+}
+
+// loading state
+btn.innerText = "Logging in...";
+btn.disabled = true;
+
+fetch("http://127.0.0.1:3000/login",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify({
+username:user,
+password:pass
+})
+})
+.then(res => {
+
+if(!res.ok){
+throw new Error("Invalid");
+}
+
+return res.json();
+})
+.then(data => {
+
+if(data.status === "success"){
+
+localStorage.setItem("admin", "true");
+
+window.location.href = "admin.html";
+
+}else{
+throw new Error("Invalid");
+}
+
+})
+.catch(()=>{
+
+errorBox.innerText = "Invalid username or password ❌";
+errorBox.style.display = "block";
+
+btn.innerText = "Login";
+btn.disabled = false;
+
+});
+
+}
+
+
+// ============================
+// ENTER KEY SUPPORT
+// ============================
+
+document.addEventListener("keypress", function(e){
+if(e.key === "Enter"){
+login();
+}
+});
+</script>
+
+</body>
+</html>
