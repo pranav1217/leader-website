@@ -737,7 +737,34 @@ function closeComplaint(){
 document.getElementById("complaintModal").style.display = "none";
 }
 
+function submitComplaint(){
 
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let area = document.getElementById("area").value;
+let problem = document.getElementById("problem").value;
+
+fetch("https://leader-backend-n30e.onrender.com/complaints",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:name,
+phone:phone,
+area:area,
+problem:problem
+})
+})
+.then(res => res.json())
+.then(data => {
+
+alert("तक्रार नोंदवली गेली ✅");
+
+})
+.catch(() => {
+alert("Server error ❌");
+});
+
+}
 // ============================
 // LOADER
 // ============================
