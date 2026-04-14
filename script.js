@@ -182,7 +182,7 @@ userInput.value = "";
 
 try{
 
-const response = await fetch("http://127.0.0.1:3000/chat", {
+const response = await fetch("https://leader-backend-n30e.onrender.com/chat", {
 method: "POST",
 headers: {
 "Content-Type": "application/json"
@@ -288,7 +288,7 @@ alert("कृपया rating निवडा");
 return;
 }
 
-fetch("http://127.0.0.1:3000/feedback",{
+fetch("https://leader-backend-n30e.onrender.com/feedback",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
@@ -324,7 +324,7 @@ alert("सर्व्हरशी संपर्क होत नाही");
 
 function loadFeedback(){
 
-fetch("http://127.0.0.1:3000/feedback")
+fetch("https://leader-backend-n30e.onrender.com/feedback")
 .then(res => res.json())
 .then(data => {
 
@@ -374,7 +374,7 @@ let sliderInterval; // 🔥 important
 
 function loadWebsiteBanner(){
 
-fetch("http://127.0.0.1:3000/banners")
+fetch("https://leader-backend-n30e.onrender.com/banners")
 .then(res => res.json())
 .then(data => {
 
@@ -391,7 +391,7 @@ return;
 let lastBanner = data[data.length - 1];
 
 box.innerHTML = `
-<img src="http://127.0.0.1:3000/static/${lastBanner.image}">
+<img src="https://leader-backend-n30e.onrender.com/static/${lastBanner.image}">
 `;
 
 });
@@ -405,7 +405,7 @@ box.innerHTML = `
 
 function loadBanners(){
 
-fetch("http://127.0.0.1:3000/banners")
+fetch("https://leader-backend-n30e.onrender.com/banners")
 .then(res => res.json())
 .then(data => {
 
@@ -457,7 +457,7 @@ let banner = banners[currentIndex];
 img.style.opacity = 0;
 
 setTimeout(()=>{
-img.src = "http://127.0.0.1:3000/static/" + banner.image;
+img.src = "https://leader-backend-n30e.onrender.com/static/" + banner.image;
 img.style.opacity = 1;
 },200);
 
@@ -654,7 +654,7 @@ chatBody.innerHTML += `<div class="user-message">${userText}</div>`;
 userInput.value = "";
 
 try{
-const response = await fetch("http://127.0.0.1:3000/chat",{
+const response = await fetch("https://leader-backend-n30e.onrender.com/chat",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body: JSON.stringify({message:userText})
@@ -779,7 +779,7 @@ alert("Complete feedback");
 return;
 }
 
-fetch("http://127.0.0.1:3000/feedback",{
+fetch("https://leader-backend-n30e.onrender.com/feedback",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({message:msg, rating:selectedRating})
@@ -802,7 +802,7 @@ loadFeedback();
 
 function loadFeedback(){
 
-fetch("http://127.0.0.1:3000/feedback")
+fetch("https://leader-backend-n30e.onrender.com/feedback")
 .then(res=>res.json())
 .then(data=>{
 
@@ -837,7 +837,7 @@ ${f.message}
 
 function loadBanners(){
 
-fetch("http://127.0.0.1:3000/banners")
+fetch("https://leader-backend-n30e.onrender.com/banners")
 .then(res=>res.json())
 .then(data=>{
 
@@ -864,7 +864,7 @@ if(!img) return;
 
 let banner = banners[currentIndex];
 
-img.src = "http://127.0.0.1:3000/static/" + banner.image;
+img.src = "https://leader-backend-n30e.onrender.com/static/" + banner.image;
 
 }
 
