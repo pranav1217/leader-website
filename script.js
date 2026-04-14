@@ -739,10 +739,20 @@ document.getElementById("complaintModal").style.display = "none";
 
 function submitComplaint(){
 
-let name = document.getElementById("name").value;
-let phone = document.getElementById("phone").value;
-let area = document.getElementById("area").value;
-let problem = document.getElementById("problem").value;
+let nameInput = document.getElementById("name");
+let phoneInput = document.getElementById("phone");
+let areaInput = document.getElementById("area");
+let problemInput = document.getElementById("problem");
+
+if(!nameInput || !phoneInput || !areaInput || !problemInput){
+alert("Form ID mismatch ❌");
+return;
+}
+
+let name = nameInput.value;
+let phone = phoneInput.value;
+let area = areaInput.value;
+let problem = problemInput.value;
 
 fetch("https://leader-backend-n30e.onrender.com/complaints",{
 method:"POST",
