@@ -744,8 +744,10 @@ let phoneInput = document.getElementById("phone");
 let areaInput = document.getElementById("area");
 let problemInput = document.getElementById("problem");
 
-if(!nameInput || !phoneInput || !areaInput || !problemInput){
-alert("Form ID mismatch ❌");
+console.log(nameInput, phoneInput, areaInput, problemInput); // DEBUG
+
+if(!nameInput){
+alert("Name input not found ❌");
 return;
 }
 
@@ -758,21 +760,12 @@ fetch("https://leader-backend-n30e.onrender.com/complaints",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-name:name,
-phone:phone,
-area:area,
-problem:problem
+name, phone, area, problem
 })
 })
 .then(res => res.json())
-.then(data => {
-
-alert("तक्रार नोंदवली गेली ✅");
-
-})
-.catch(() => {
-alert("Server error ❌");
-});
+.then(()=> alert("तक्रार नोंदवली गेली ✅"))
+.catch(()=> alert("Server error ❌"));
 
 }
 // ============================
