@@ -133,7 +133,7 @@ def chat():
 # COMPLAINT API
 # ============================
 
-@app.route("/complaint", methods=["POST"])
+@app.route("/complaints", methods=["POST"])
 def complaint():
 
     try:
