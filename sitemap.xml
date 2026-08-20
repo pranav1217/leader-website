@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
         <loc>https://rajeshpundalikmore.netlify.app/</loc>
+    </url>
+
+    <url>
+        <loc>https://rajeshpundalikmore.netlify.app/about.html</loc>
+    </url>
+
+    <url>
+        <loc>https://rajeshpundalikmore.netlify.app/work.html</loc>
+    </url>
+
+    <url>
+        <loc>https://rajeshpundalikmore.netlify.app/gallery.html</loc>
+    </url>
+
+    <url>
+        <loc>https://rajeshpundalikmore.netlify.app/contact.html</loc>
     </url>
 
 </urlset>
